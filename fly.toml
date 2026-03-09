@@ -1,0 +1,31 @@
+# fly.toml - Fly.io app config for TCG Simulator
+# If you used a different app name when connecting the repo, update [app] and the hostname below.
+
+app = "tcg-simulator"
+
+[build]
+
+[env]
+  PHX_HOST = "tcg-simulator.fly.dev"
+  PORT = "8080"
+
+[http_service]
+  internal_port = 8080
+  force_https = true
+  auto_stop_machines = true
+  auto_start_machines = true
+  min_machines_running = 0
+  processes = ["app"]
+
+  [http_service.concurrency]
+    type = "connections"
+    hard_limit = 25
+    soft_limit = 20
+
+[[vm]]
+  memory = "512mb"
+  cpu_kind = "shared"
+  cpus = 1
+
+[deploy]
+  release_command = "/app/bin/migrate"

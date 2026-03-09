@@ -1,0 +1,15 @@
+.git
+.gitignore
+_build
+deps
+*.ez
+.elixir_ls
+*.beam
+/doc
+/test
+cover
+.tool-versions
+*.md
+.env*
+*.log
+.DS_Store
